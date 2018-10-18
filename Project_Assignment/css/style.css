@@ -1,16 +1,14 @@
 .navbar{
-	margin-bottom: 50px;
+	margin-bottom: 0;
     border-radius: 0;
 }
-    
-/* Remove the jumbotron's default bottom margin */ 
+
+/* Remove the jumbotron's default bottom margin */
 .jumbotron{
 	margin-bottom: 0;
 }
-.sticky{
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
+
+
+
 
 

@@ -1,0 +1,66 @@
+{
+    "ProductCollection": [
+        {
+            "ProductId": "LAP-0001",
+			"Category": "Laptops",
+			"MainCategory": "Electronics",
+			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+			"Name": "Notebook Basic 15",
+			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
+			"Price": 40000,
+        },
+        {
+            "ProductId": "LAP-0002",
+			"Category": "Laptops",
+			"MainCategory": "Electronics",
+			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+			"Name": "Notebook Basic 15",
+			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
+			"Price": 40000,
+        },
+        {
+            "ProductId": "LAP-0003",
+			"Category": "Laptops",
+			"MainCategory": "Electronics",
+			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+			"Name": "Notebook Basic 15",
+			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
+			"Price": 40000,
+        },
+        {
+          "ProductId": "MOB-0001",
+			"Category": "Mobile",
+			"MainCategory": "Electronics",
+			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
+			"Name": "Sumsung s9 plus",
+            "ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
+            "Price": "72000"
+        },
+        {
+          "ProductId": "MOB-0002",
+			"Category": "Mobile",
+			"MainCategory": "Electronics",
+			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
+			"Name": "Sumsung s9 plus",
+			"ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
+            "Price": "72000"
+        },
+        {
+          "ProductId": "MOB-0003",
+			"Category": "Mobile",
+			"MainCategory": "Electronics",
+			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
+			"Name": "Sumsung s9 plus",
+			"ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
+            "Price": "72000"
+        },
+        {
+            "ProductId": "SH-0001",
+			"Category": "Shoe",
+			"MainCategory": "Shoe",
+			"Description": "Casual shoe",
+			"ProductPicUrl": "C:\Users\parag10\Desktop\AIG-Assignment\Project_Assignment\images\Shoes\Shoe1.jpg",
+            "Price": "2000"
+        },
+    ]
+}
