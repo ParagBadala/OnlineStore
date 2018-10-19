@@ -20,107 +20,98 @@ $(document).ready(function() {
 });
 
 
+// Function rendering Html product page according to category clicked
 function openCity(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
+    var i, x, tablinks;
+    document.getElementById("wrapper").innerHTML="";
+    var div1 = document.createElement("div");
+    div1.setAttribute("id",cityName);
+    div1.setAttribute("class","w3-container city  w3-animate-right");
+    wrapper.appendChild(div1);
+    var div2 = document.createElement("div");
+    div2.setAttribute("id","mySidenav");
+    div2.setAttribute("class","sidenav");
+    div1.appendChild(div2);
+    var aTag1 = document.createElement("a");
+    aTag1.setAttribute("href","javascript:void(0)");
+    aTag1.setAttribute("class","closebtn");
+    aTag1.setAttribute("onclick","closeNav()");
+    aTag1.innerHTML="&times;"
+    div2.appendChild(aTag1);
+    var aTag2 = document.createElement("a");
+    aTag2.setAttribute("href","#");
+    aTag2.innerHTML="About";
+    div2.appendChild(aTag2);
+    var aTag3 = document.createElement("a");
+    aTag3.setAttribute("href","#");
+    aTag3.innerHTML="Service";
+    div2.appendChild(aTag3);
+    var aTag4 = document.createElement("a");
+    aTag4.setAttribute("href","#");
+    aTag4.innerHTML="Client";
+    div2.appendChild(aTag4);
+    var aTag5 = document.createElement("a");
+    aTag5.setAttribute("href","#");
+    aTag5.innerHTML="Contact";
+    div2.appendChild(aTag5);
+    var div3 = document.createElement("div");
+    div1.appendChild(div3);
+    div3.setAttribute("id","Main");
+    var span = document.createElement("span");
+    div3.appendChild(span);
+    span.setAttribute("style","font-size:30px;cursor:pointer");
+    span.setAttribute("onclick","openNav()");
+    span.innerHTML="&#9776; Filter";
+    var p = document.createElement("p");
+    p.innerHTML=cityName;
+    div3.appendChild(p);
+
+//
+//  x = document.getElementsByClassName("city");
+//  for (i = 0; i < x.length; i++) {
+//      x[i].style.display = "none";
+//  }
+//  tablinks = document.getElementsByClassName("tablink");
+//  for (i = 0; i < x.length; i++) {
+//      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+//  }
+//  document.getElementById(cityName).style.display = "block";
+//  evt.currentTarget.className += " w3-red";
 }
 
-
-function w3_open() {
-  document.getElementById("main").style.marginLeft = "25%";
-  document.getElementById("mySidebar").style.width = "25%";
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("openNav").style.display = 'none';
-}
-function w3_close() {
-  document.getElementById("main").style.marginLeft = "0%";
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("openNav").style.display = "inline-block";
-}
-
-function w3_MobileOpen() {
-  document.getElementById("MobileMain").style.marginLeft = "25%";
-  document.getElementById("MobileSidebar").style.width = "25%";
-  document.getElementById("MobileSidebar").style.display = "block";
-  document.getElementById("MobileOpenNav").style.display = 'none';
-}
-function w3_MobileClose() {
-  document.getElementById("MobileMain").style.marginLeft = "0%";
-  document.getElementById("MobileSidebar").style.display = "none";
-  document.getElementById("MobileOpenNav").style.display = "inline-block";
-}
-
-function w3_MobileOpen() {
-  document.getElementById("MobileMain").style.marginLeft = "25%";
-  document.getElementById("MobileSidebar").style.width = "25%";
-  document.getElementById("MobileSidebar").style.display = "block";
-  document.getElementById("MobileOpenNav").style.display = 'none';
-}
-function w3_MobileClose() {
-  document.getElementById("MobileMain").style.marginLeft = "0%";
-  document.getElementById("MobileSidebar").style.display = "none";
-  document.getElementById("MobileOpenNav").style.display = "inline-block";
-}
-
-function w3_ClothingOpen() {
-  document.getElementById("ClothingMain").style.marginLeft = "25%";
-  document.getElementById("ClothingSidebar").style.width = "25%";
-  document.getElementById("ClothingSidebar").style.display = "block";
-  document.getElementById("ClothingOpenNav").style.display = 'none';
-}
-function w3_ClothingClose() {
-  document.getElementById("ClothingMain").style.marginLeft = "0%";
-  document.getElementById("ClothingSidebar").style.display = "none";
-  document.getElementById("ClothingOpenNav").style.display = "inline-block";
-}
-
+//Function for open sideNavbar
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("watchesMain").style.marginLeft = "250px";
+    document.getElementById("Main").style.marginLeft = "250px";
 }
 
+// Function for closing sideNavbar
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("watchesMain").style.marginLeft= "0";
+    document.getElementById("Main").style.marginLeft= "0";
 }
-
-function w3_ShoeOpen() {
-  document.getElementById("ShoeMain").style.marginLeft = "25%";
-  document.getElementById("ShoeSidebar").style.width = "25%";
-  document.getElementById("ShoeSidebar").style.display = "block";
-  document.getElementById("ShoeOpenNav").style.display = 'none';
-}
-function w3_ShoeClose() {
-  document.getElementById("ShoeMain").style.marginLeft = "0%";
-  document.getElementById("ShoeSidebar").style.display = "none";
-  document.getElementById("ShoeOpenNav").style.display = "inline-block";
-}
-
 
 
 //Reading Main category from JSON file and displaying in Navbar
 
 $(document).ready(function(){
     $.getJSON("./Schema/categories.json",function(data){
-        console.log(data);
         $.each(data.categories, function(i,category){
             var subjsondata='';
             $.each(category.sub_categories, function(i,sub_categories){
-                subjsondata += "<li>"+sub_categories.name+"</li>"
+                subjsondata += "<li onClick=\"openCity(event,'"+sub_categories.name+"')\"><a href=\"#\">"+sub_categories.name+"</a></li>";
+
             });
-            var jsondata ="<li class=\"tablink\" onClick=\"openCity(event,'"+category.name+"')\"><a href=\"#\">"+category.name+
+            if(subjsondata!="")
+            {
+                var jsondata ="<li class=\"tablink\" \"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">"+category.name+
+                "</a><ul class=\"dropdown-menu\">"+subjsondata+"</ul></li>";
+            }
+            else{
+                var jsondata ="<li class=\"tablink\" \"dropdown\" onClick=\"openCity(event,'"+category.name+"')\"><a href=\"#\">"+category.name+
                 "</a></li>";
-             console.log(jsondata);
-$(jsondata).appendTo("#menu_ul");
+            }
+            $(jsondata).appendTo("#menu_ul");
         })
     })
 })
