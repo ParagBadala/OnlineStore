@@ -70,14 +70,10 @@
 
         </style>
 	</head>
-	<body>
-		<div class="jumbotron">
-  			<div class="container text-center">
-    			<h1>Online Store</h1>
-    			<!--<p>Mission, Vission & Values</p>-->
-  			</div>
-		</div>
+	<body onload="home()">
+        <div id="Above_nav">
 
+        </div>
 		<!--Navigation bar-->
 		<nav class="navbar navbar-inverse" id="mNavbar">
   			<div class="container-fluid">
@@ -87,113 +83,28 @@
         			<span class="icon-bar"></span>
         			<span class="icon-bar"></span>
       				</button>
-      				<a class="navbar-brand" href="#">Logo</a>
+      				<a class="navbar-brand" href="#" onclick="home()">Home</a>
     			</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 				  <ul class="nav navbar-nav" id="menu_ul">
-<!--
 
--->
 				  </ul>
 				  <ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+					<li><a href="#"  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> Your Account<span class="caret"></span></a>
+                        <ul class="dropdown-menu" aria-labelledby="about-us">
+							<li><a href="#">My Order</a></li>
+							<li onclick="wishlistPage()"><a href="#" >Wishlist</a></li>
+							<li><a href="#">LogOut</a></li>
+				        </ul>
+                    </li>
+					<li onclick="cartPage()"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 				  </ul>
-				</div>
+				b</div>
   			</div>
 		</nav>
         <div id="wrapper">
 
-<!--
-		<div id="Electronics" class="w3-container city  w3-animate-right">
-			<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
-		  		<button class="w3-bar-item w3-button w3-large" onClick="w3_close()">Close &times;</button>
-				<a href="#" class="w3-bar-item w3-button">Link 1</a>
-				<a href="#" class="w3-bar-item w3-button">Link 2</a>
-				<a href="#" class="w3-bar-item w3-button">Link 3</a>
-			</div>
-            <div id="main">
-			  <button id="openNav" class="w3-button w3-teal w3-xlarge" onClick="w3_open()">&#9776;</button>
-			  <div class="w3-container">
-                <h2>Laptops</h2>
-			  <p>Different Laptops To be displayed </p>
-             </div>
-            </div>
-  		</div>
--->
-
-<!--
-        <div id="Books" class="w3-container w3-border city  w3-animate-right" style="display:none">
-           <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="MobileSidebar">
-		  		<button class="w3-bar-item w3-button w3-large" onClick="w3_MobileClose()">Close &times;</button>
-				<a href="#" class="w3-bar-item w3-button">Link 1</a>
-				<a href="#" class="w3-bar-item w3-button">Link 2</a>
-				<a href="#" class="w3-bar-item w3-button">Link 3</a>
-			</div>
-           <div id="MobileMain">
-                <button id="MobileOpenNav" class="w3-button w3-teal w3-xlarge" onClick="w3_MobileOpen()">&#9776;</button>
-			  <div class="w3-container">
-                <h2>Mobiles</h2>
-			    <p>Different mobiles to be displayed</p>
-             </div>
-           </div>
-  		</div>
--->
-
-<!--
-	   <div id="Clothing" class="w3-container city  w3-animate-right" style="display:none">
-            <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="ClothingSidebar">
-		  		<button class="w3-bar-item w3-button w3-large" onClick="w3_ClothingClose()">Close &times;</button>
-				<a href="#" class="w3-bar-item w3-button">Link 1</a>
-				<a href="#" class="w3-bar-item w3-button">Link 2</a>
-				<a href="#" class="w3-bar-item w3-button">Link 3</a>
-			</div>
-           <div id="ClothingMain">
-                <button id="ClothingOpenNav" class="w3-button w3-teal w3-xlarge" onClick="w3_ClothingOpen()">&#9776;</button>
-			     <div class="w3-container">
-                    <h2>Clothing</h2>
-			         <p>Different clothing to be displayed</p>
-                 </div>
-           </div>
-	  </div>
--->
-
-<!--
-	   <div id="Watches" class="w3-container city  w3-animate-right " style="display:none">
-            <div id="mySidenav" class="sidenav">
-              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-              <a href="#">About</a>
-              <a href="#">Services</a>
-              <a href="#">Clients</a>
-              <a href="#">Contact</a>
-            </div>
-
-            <div id="watchesMain">
-              <h2>Watches</h2>
-              <p>Buy Watches</p>
-              <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
-            </div>
-	  </div>
--->
-<!--
-
-	   <div id="Shoe" class="w3-container city  w3-animate-right" style="display:none">
-           <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="ShoeSidebar">
-		  		<button class="w3-bar-item w3-button w3-large" onClick="w3_ShoeClose()">Close &times;</button>
-				<a href="#" class="w3-bar-item w3-button">Link 1</a>
-				<a href="#" class="w3-bar-item w3-button">Link 2</a>
-				<a href="#" class="w3-bar-item w3-button">Link 3</a>
-			</div>
-           <div id="ShoeMain">
-                <button id="ShoeOpenNav" class="w3-button w3-teal w3-xlarge" onClick="w3_ShoeOpen()">&#9776;</button>
-			     <div class="w3-container">
-                     <h2>Shoes</h2>
-                     <p>Different Shoes to be displayed</p>
-               </div>
-           </div>
-        </div>
--->
-            </div>
+	   </div>
 <!-- External Javascript file -->
 		<script src="js/index.js"></script>
 

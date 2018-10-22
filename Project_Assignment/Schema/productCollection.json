@@ -1,66 +1,267 @@
-{
-    "ProductCollection": [
-        {
-            "ProductId": "LAP-0001",
-			"Category": "Laptops",
-			"MainCategory": "Electronics",
-			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
-			"Name": "Notebook Basic 15",
-			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
-			"Price": 40000,
-        },
-        {
-            "ProductId": "LAP-0002",
-			"Category": "Laptops",
-			"MainCategory": "Electronics",
-			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
-			"Name": "Notebook Basic 15",
-			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
-			"Price": 40000,
-        },
-        {
-            "ProductId": "LAP-0003",
-			"Category": "Laptops",
-			"MainCategory": "Electronics",
-			"Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
-			"Name": "Notebook Basic 15",
-			"ProductPicUrl": "Project_Assignment\images\Electronics\Laptops\Laptop1.jpg",
-			"Price": 40000,
-        },
-        {
-          "ProductId": "MOB-0001",
-			"Category": "Mobile",
-			"MainCategory": "Electronics",
-			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
-			"Name": "Sumsung s9 plus",
-            "ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
-            "Price": "72000"
-        },
-        {
-          "ProductId": "MOB-0002",
-			"Category": "Mobile",
-			"MainCategory": "Electronics",
-			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
-			"Name": "Sumsung s9 plus",
-			"ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
-            "Price": "72000"
-        },
-        {
-          "ProductId": "MOB-0003",
-			"Category": "Mobile",
-			"MainCategory": "Electronics",
-			"Description": "10.1-inch Multitouch HD Screen (1280 x 800), 16GB Internal Memory, Wireless N Wi-Fi; Bluetooth, GPS Enabled, 1GHz Dual-Core Processor",
-			"Name": "Sumsung s9 plus",
-			"ProductPicUrl": "Project_Assignment\images\Electronics\Mobiles\Mobile1.png",
-            "Price": "72000"
-        },
-        {
-            "ProductId": "SH-0001",
-			"Category": "Shoe",
-			"MainCategory": "Shoe",
-			"Description": "Casual shoe",
-			"ProductPicUrl": "C:\Users\parag10\Desktop\AIG-Assignment\Project_Assignment\images\Shoes\Shoe1.jpg",
-            "Price": "2000"
-        },
-    ]
-}
+[
+    {
+        "id": 1,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop1.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 2,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop2.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 3,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop3.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 4,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop4.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 5,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop5.jpg",
+        "processor": "i3",
+        "price": 44490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 6,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop6.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 7,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop1.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 8,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop2.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 9,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop3.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 10,
+        "name": "Dell Inspiron 15",
+        "category": "Laptop",
+        "maincategory": "Electronics",
+        "company": "DELL",
+        "RAM": 4,
+        "image": "laptop4.jpg",
+        "processor": "i3",
+        "price": 30490,
+        "description": "1 TB HDD, Windows 10 Home, Core i3, 6th Gen"
+    },
+    {
+        "id": 11,
+        "name": "Sumsung S9 Plus",
+        "category": "Mobile",
+        "maincategory": "Electronics",
+        "company": "Sumsung",
+        "RAM": 4,
+        "image": "mobile2.png",
+        "processor": "Snapdragaon 675",
+        "price": 30490,
+        "description": ""
+    },
+    {
+        "id": 12,
+        "name": "Nike Sneaker",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Nike",
+        "image": "Shoe1.jpg",
+        "price": 3490,
+        "color": "White",
+        "description": ""
+
+    },
+    {
+        "id": 13,
+        "name": "Nike Air",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Nike",
+        "image": "Shoe2.jpg",
+        "price": 4490,
+        "color": "Black",
+        "description": ""
+
+    },
+
+    {
+        "id": 14,
+        "name": "Gucci Sneaker",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Gucci",
+        "image": "Shoe5.jpg",
+        "price": 3000,
+        "color": "White",
+        "description": ""
+
+    },
+    {
+        "id": 15,
+        "name": "Nike Air Force",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Nike",
+        "image": "Shoe6.jpg",
+        "price": 7000,
+        "color": "White",
+        "description": ""
+
+    },
+    {
+        "id": 16,
+        "name": "Adidas Neo 2",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Adidas",
+        "image": "Shoe4.jpg",
+        "price": 2700,
+        "color": "White",
+        "description": ""
+
+    },
+    {
+        "id": 17,
+        "name": "Nike OG Sneaker",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Nike",
+        "image": "Shoe3.jpg",
+        "price": 2200,
+        "color": "White",
+        "description": ""
+
+    },
+    {
+        "id": 18,
+        "name": "Adidas Climacool",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Nike",
+        "image": "Shoe7.jpg",
+        "price": 2900,
+        "color": "Black",
+        "description": ""
+
+    },
+    {
+        "id": 19,
+        "name": "Adidas Busanitz",
+        "category": "Shoes",
+        "maincategory": "Shoes",
+        "company": "Adidas",
+        "image": "Shoe8.jpg",
+        "price": 3000,
+        "color": "Black",
+        "description": ""
+
+    },
+    {
+        "id": 20,
+        "name": "Iphone X",
+        "category": "Mobile",
+        "maincategory": "Electronics",
+        "company": "Iphone",
+        "RAM": 4,
+        "image": "mobile1.jpg",
+        "processor": "Snapdragaon 675",
+        "price": 82490,
+        "description": ""
+    },
+    {
+        "id": 21,
+        "name": "One plus 6t",
+        "category": "Mobile",
+        "maincategory": "Electronics",
+        "company": "One+",
+        "RAM": 4,
+        "image": "mobile3.jpg",
+        "processor": "Snapdragaon 675",
+        "price": 38000,
+        "description": ""
+    },
+    {
+        "id": 22,
+        "name": "Google Pixel 3",
+        "category": "Mobile",
+        "maincategory": "Electronics",
+        "company": "Google",
+        "RAM": 4,
+        "image": "mobile4.jpg",
+        "processor": "Snapdragaon 675",
+        "price": 50000,
+        "description": ""
+    }
+]
