@@ -3,10 +3,6 @@ var productWishlist=[];
 /*Sticky Navbar*/
 $(document).ready(function() {
   var $navbar = $("#mNavbar");
-
-    $.getJSON("./Schema/productCollection.json",function(data){
-        console.log(data);
-    })
   AdjustHeader(); // Incase the user loads the page from halfway down (or something);
   $(window).scroll(function() {
       AdjustHeader();
@@ -30,16 +26,24 @@ function addProduct(prodId){
         url: "./Schema/productCollection.json",//the datasource
         dataType: "json",
         success: function(data){
-
+            var obj = {};
             for(d of data){
                 if(d.id==prodId)
                     {
+                        obj = d;
                         productCart.push(d);
-                        console.log(productCart);
+                        alert("Product Added to Cart");
                         break;
                     }
-                }
-    }, // what happens when it is successful at loading the XML
+            }
+//            if(!productCart.indexOf(obj)){
+//                productCart.push(obj);
+//                alert("Product Added to Cart");
+//            }
+//            else{
+//                alert("Poduct Already In Cart");
+//            }
+    }, // when it is successful at loading the JSON
     error: function(e){
         alert(e);
     }
@@ -48,24 +52,21 @@ function addProduct(prodId){
 }
 
 //Function Loading the product
-function loadProduct(){
+function loadProduct(id){
+    document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     jumbotron();
     for(d of productCart){
         console.log(d);
-        $("#Main").append(`<div class="col-lg-4 col-md-4 col-xs-6">
-        <div class=" text-center thumbnail">
-            <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
-            <div class="caption">
-                <div class="caption">
-                    <h3>${d.name}</h3>
-                    <p>Price: ${d.price}</p>
-                    <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
-                    </div>
-            </div>
-        </div>
-    </div> `);
+        if(d.id==id){
+             $("#Main").append(`<div class="card">
+              <img src="./images/${d.category}/${d.image}" alt=""           style="width:100%">
+             <h1>{d.name}</h1>
+             <p class="title">${d.description}</p>
+             <p>${d.price}</p>
+             <p><button class="cart_btn">Contact</button></p>
+             </div> `);
+        }
     }
 }
 
@@ -77,7 +78,6 @@ function removeProductCart(prodId){
         dataType: "json",
         success: function(data){
             for(d in productCart){
-                console.log("inside for")
                 if(productCart[d].id==prodId)
                     {
                         console.log("inside if"+d)
@@ -187,7 +187,7 @@ function openProduct(evt, productName) {
     var span = document.createElement("span");
     div3.appendChild(span);
     span.setAttribute("style","font-size:30px;cursor:pointer");
-    span.setAttribute("onclick","openNav()");
+    span.setAttribute("oncblick","openNav()");
     span.innerHTML="&#9776; Filter";
     var p = document.createElement("p");
     p.innerHTML=productName;
@@ -233,6 +233,7 @@ $(document).ready(function(){
 
 //Function displaying Home Page
 function home(){
+    document.getElementById("Above_nav").innerHTML="";
     document.getElementById("wrapper").innerHTML="";
    $("#wrapper").append(`<div class="fluid-container">
             <div id="feature-carousel" class="carousel slide" data-ride="carousel">
@@ -348,31 +349,44 @@ function cartPage(){
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     jumbotron();
-    for(d of productCart){
-        console.log(d);
-        $("#Main").append(`<div class="col-lg-4 col-md-4 col-xs-6">
-        <div class=" text-center thumbnail">
-            <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
-            <div class="caption">
+    console.log(productCart);
+    if(productCart.length==0){
+        console.log("Empty cart");
+            $("#Main").append(`<div class="jumbotron">
+                <div class="container text-center">
+                    <h1>Cart is Empty</h1>
+                    <a href="#" class="btn btn-danger" onClick="home()"><span class="glyphicon glyphicon-home" ></span> Back To Home</a>
+                     </div>
+                </div>`)
+        }
+    else{
+        for(d of productCart){
+            console.log(d);
+            $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
+            <div class=" text-center thumbnail">
+                <a href="#" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
                 <div class="caption">
-                    <h3>${d.name}</h3>
-                    <p>Price: ${d.price}</p>
-                    <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
-                    </div>
+                    <div class="caption">
+                        <h3>${d.name}</h3>
+                        <p>Price: ${d.price}</p>
+                        <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
+                        </div>
+                </div>
             </div>
-        </div>
-    </div> `);
+        </div> `);
+        }
     }
 }
 
 
 //Function displaying product added to cart
 function wishlistPage(){
+    document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     for(d of productWishlist){
         console.log(d);
-        $("#Main").append(`<div class="col-lg-4 col-md-4 col-xs-6">
+        $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
         <div class=" text-center thumbnail">
             <a href="#" class="d-block mb-4 h-100">
             <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
