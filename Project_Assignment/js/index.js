@@ -47,6 +47,28 @@ function addProduct(prodId){
 
 }
 
+//Function Loading the product
+function loadProduct(){
+    document.getElementById("Main").innerHTML="";
+    jumbotron();
+    for(d of productCart){
+        console.log(d);
+        $("#Main").append(`<div class="col-lg-4 col-md-4 col-xs-6">
+        <div class=" text-center thumbnail">
+            <a href="#" class="d-block mb-4 h-100">
+            <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
+            <div class="caption">
+                <div class="caption">
+                    <h3>${d.name}</h3>
+                    <p>Price: ${d.price}</p>
+                    <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
+                    </div>
+            </div>
+        </div>
+    </div> `);
+    }
+}
+
 //Function removing product from cart
 function removeProductCart(prodId){
         $.ajax({// calling the ajax object of jquery
@@ -107,7 +129,7 @@ function readProductCollection(cat){
                         $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
             <div class=" text-center thumbnail">
                 <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
+                    <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt="" onclick="loadProduct(${d.id})"></a>
                     <div class="caption">
                         <h3>${d.name}</h3>
                         <p>Price: ${d.price}</p>
@@ -126,11 +148,11 @@ function readProductCollection(cat){
 }
 
 // Function rendering Html product page according to category clicked
-function openCity(evt, cityName) {
+function openProduct(evt, productName) {
     var i, x, tablinks;
     document.getElementById("wrapper").innerHTML="";
     var div1 = document.createElement("div");
-    div1.setAttribute("id",cityName);
+    div1.setAttribute("id",productName);
     div1.setAttribute("class","w3-container city  w3-animate-right");
     wrapper.appendChild(div1);
     var div2 = document.createElement("div");
@@ -168,9 +190,9 @@ function openCity(evt, cityName) {
     span.setAttribute("onclick","openNav()");
     span.innerHTML="&#9776; Filter";
     var p = document.createElement("p");
-    p.innerHTML=cityName;
+    p.innerHTML=productName;
     div3.appendChild(p);
-    readProductCollection(cityName);
+    readProductCollection(productName);
 }
 
 //Function for open sideNavbar
@@ -192,7 +214,7 @@ $(document).ready(function(){
         $.each(data.categories, function(i,category){
             var subjsondata='';
             $.each(category.sub_categories, function(i,sub_categories){
-                subjsondata += "<li onClick=\"openCity(event,'"+sub_categories.name+"')\"><a href=\"#\">"+sub_categories.name+"</a></li>";
+                subjsondata += "<li onClick=\"openProduct(event,'"+sub_categories.name+"')\"><a href=\"#\">"+sub_categories.name+"</a></li>";
 
             });
             if(subjsondata!="")
@@ -201,7 +223,7 @@ $(document).ready(function(){
                 "</a><ul class=\"dropdown-menu\">"+subjsondata+"</ul></li>";
             }
             else{
-                var jsondata ="<li class=\"tablink\" \"dropdown\" onClick=\"openCity(event,'"+category.name+"')\"><a href=\"#\">"+category.name+
+                var jsondata ="<li class=\"tablink\" \"dropdown\" onClick=\"openProduct(event,'"+category.name+"')\"><a href=\"#\">"+category.name+
                 "</a></li>";
             }
             $(jsondata).appendTo("#menu_ul");
@@ -323,6 +345,7 @@ function jumbotron(){
 
 //Function displaying product added to cart
 function cartPage(){
+    document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     jumbotron();
     for(d of productCart){
