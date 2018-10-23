@@ -56,18 +56,28 @@ function loadProduct(id){
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     jumbotron();
-    for(d of productCart){
-        console.log(d);
-        if(d.id==id){
-             $("#Main").append(`<div class="card">
-              <img src="./images/${d.category}/${d.image}" alt=""           style="width:100%">
-             <h1>{d.name}</h1>
-             <p class="title">${d.description}</p>
-             <p>${d.price}</p>
-             <p><button class="cart_btn">Contact</button></p>
-             </div> `);
+    $.ajax({// calling the ajax object of jquery
+        type: "GET",// we are going to be getting info from this data source
+        url: "./Schema/productCollection.json",//the datasource
+        dataType: "json",
+        success: function(data){
+            for(d of data){
+                console.log(d);
+                if(d.id==id){
+                    $("#Main").append(`<div class="card">
+                  <img src="./images/${d.category}/${d.image}" alt=""           style="width:100%">
+                 <h1>${d.name}</h1>
+                 <p class="title">${d.description}</p>
+                 <p>Price:${d.price}</p>
+                 <p><button class="btn btn-info cart_btn">Add To Cart</button></p>
+                 </div>`);
         }
     }
+}, // what happens when it is successful at loading the XML
+    error: function(e){
+        alert(e);
+      }
+    });
 }
 
 //Function removing product from cart
@@ -140,7 +150,7 @@ function readProductCollection(cat){
         </div> `);
             }
         }
-    }, // what happens when it is successful at loading the XML
+    }, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
       }
@@ -149,50 +159,42 @@ function readProductCollection(cat){
 
 // Function rendering Html product page according to category clicked
 function openProduct(evt, productName) {
-    var i, x, tablinks;
+    var company= new Set()
+    document.getElementById("Above_nav").innerHTML="";
     document.getElementById("wrapper").innerHTML="";
-    var div1 = document.createElement("div");
-    div1.setAttribute("id",productName);
-    div1.setAttribute("class","w3-container city  w3-animate-right");
-    wrapper.appendChild(div1);
-    var div2 = document.createElement("div");
-    div2.setAttribute("id","mySidenav");
-    div2.setAttribute("class","sidenav");
-    div1.appendChild(div2);
-    var aTag1 = document.createElement("a");
-    aTag1.setAttribute("href","javascript:void(0)");
-    aTag1.setAttribute("class","closebtn");
-    aTag1.setAttribute("onclick","closeNav()");
-    aTag1.innerHTML="&times;"
-    div2.appendChild(aTag1);
-    var aTag2 = document.createElement("a");
-    aTag2.setAttribute("href","#");
-    aTag2.innerHTML="About";
-    div2.appendChild(aTag2);
-    var aTag3 = document.createElement("a");
-    aTag3.setAttribute("href","#");
-    aTag3.innerHTML="Service";
-    div2.appendChild(aTag3);
-    var aTag4 = document.createElement("a");
-    aTag4.setAttribute("href","#");
-    aTag4.innerHTML="Client";
-    div2.appendChild(aTag4);
-    var aTag5 = document.createElement("a");
-    aTag5.setAttribute("href","#");
-    aTag5.innerHTML="Contact";
-    div2.appendChild(aTag5);
-    var div3 = document.createElement("div");
-    div1.appendChild(div3);
-    div3.setAttribute("id","Main");
-    var span = document.createElement("span");
-    div3.appendChild(span);
-    span.setAttribute("style","font-size:30px;cursor:pointer");
-    span.setAttribute("oncblick","openNav()");
-    span.innerHTML="&#9776; Filter";
-    var p = document.createElement("p");
-    p.innerHTML=productName;
-    div3.appendChild(p);
-    readProductCollection(productName);
+    $("#wrapper").append(`<div id="productName" class="w3-container city  w3-animate-right">
+                        <div id="mySidenav" class="sidenav">
+                            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                            <a href="#">Brand</a>
+
+                        </div>
+                    </div>
+                    <div id="Main">
+                        <span style="font-size:30px;cursor:pointer; display:block" onclick="openNav()">&#9776; Filter</span>
+                    </div>`);
+     $.ajax({// calling the ajax object of jquery
+        type: "GET",// we are going to be getting info from this data source
+        url: "./Schema/productCollection.json",//the datasource
+        dataType: "json",
+        success: function(data){
+            for(d of data){
+                if(d.category==productName)
+                {
+                    company.add(d.company)
+                }
+            }
+            for(d of company){
+                        $("#mySidenav").append(`<div class="checkbox">
+                        <label><input type="checkbox" value="">${d}</label>
+                        </div>`)
+                        readProductCollection(productName);
+            }
+
+    }, // what happens when it is successful at loading the XML
+    error: function(e){
+        alert(e);
+      }
+    });
 }
 
 //Function for open sideNavbar
@@ -349,9 +351,7 @@ function cartPage(){
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     jumbotron();
-    console.log(productCart);
     if(productCart.length==0){
-        console.log("Empty cart");
             $("#Main").append(`<div class="jumbotron">
                 <div class="container text-center">
                     <h1>Cart is Empty</h1>
@@ -385,7 +385,6 @@ function wishlistPage(){
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
     for(d of productWishlist){
-        console.log(d);
         $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
         <div class=" text-center thumbnail">
             <a href="#" class="d-block mb-4 h-100">
@@ -400,4 +399,94 @@ function wishlistPage(){
         </div>
     </div> `);
     }
+}
+
+//Function displaying Login Page
+function login(){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("Main").innerHTML="";
+    $("#Main").append(` <div class="container" style="margin-top:40px">
+		<div class="row">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<strong>Admin LogIn</strong>
+					</div>
+					<div class="panel-body">
+						<form role="form">
+							<fieldset>
+								<div class="row">
+									<div class="center-block">
+										<img class="profile-img"
+											src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-user"></i>
+												</span>
+												<input class="form-control" placeholder="Username" name="loginname" type="text" id="uname" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" placeholder="Password" name="password" type="password" id="pword" value="">
+											</div>
+										</div>
+										<div class="form-group">
+											<input type="button" class="btn btn-lg btn-primary btn-block" value="Log in" onclick="addCategory()">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					<div class="panel-footer ">
+				        Authorized Used Only
+					</div>
+                </div>
+			</div>
+		</div>
+	</div>
+`);
+}
+
+//Function to add category
+function addCategory(){
+    var uname = document.getElementById("uname").value;
+    var pass = document.getElementById("pword").value;
+    console.log(uname,pass);
+    if(uname=="admin" && pass=="admin"){
+        document.getElementById("Above_nav").innerHTML="";
+        document.getElementById("Main").innerHTML="";
+        $("#Main").append(`<div class="container">
+        <h2>CRUD Operation</h2>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li><a data-toggle="tab" href="#add">Add</a></li>
+                    <li><a data-toggle="tab" href="#delete">Delete</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+              <div class="tab-content">
+                <div id="add" class="tab-pane fade in active">
+                  <h3>Add</h3>
+                </div>
+                <div id="delete" class="tab-pane fade">
+                  <h3>DELETE</h3>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer">Authorized Person </div>
+        </div>
+    </div>
+    `)
+  }
 }
