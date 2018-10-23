@@ -102,3 +102,7 @@ button:hover, a:hover {
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
 }
+
+.filter_checkbox{
+    margin-left: 30px;
+}

@@ -1,5 +1,6 @@
 var productCart=[];
 var productWishlist=[];
+var company= new Set();
 /*Sticky Navbar*/
 $(document).ready(function() {
   var $navbar = $("#mNavbar");
@@ -159,14 +160,12 @@ function readProductCollection(cat){
 
 // Function rendering Html product page according to category clicked
 function openProduct(evt, productName) {
-    var company= new Set()
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("wrapper").innerHTML="";
     $("#wrapper").append(`<div id="productName" class="w3-container city  w3-animate-right">
                         <div id="mySidenav" class="sidenav">
                             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                             <a href="#">Brand</a>
-
                         </div>
                     </div>
                     <div id="Main">
@@ -183,18 +182,67 @@ function openProduct(evt, productName) {
                     company.add(d.company)
                 }
             }
+            var count=1;
             for(d of company){
-                        $("#mySidenav").append(`<div class="checkbox">
-                        <label><input type="checkbox" value="">${d}</label>
-                        </div>`)
-                        readProductCollection(productName);
+                $("#mySidenav").append(`<div id="filter_check" class="checkbox filter_checkbox">
+                <label onclick="checkbox_click()"><input type="checkbox" id="filter${count}" value="">${d}</label>
+                </div>`)
+                count=count+1;
             }
+            readProductCollection(productName);
 
     }, // what happens when it is successful at loading the XML
     error: function(e){
         alert(e);
       }
     });
+}
+
+
+//Function for checkbox
+function checkbox_click(){
+    console.log(company.size);
+    var length = 0
+//    while(length!=company.size){
+//        if(document.querySelector("#filter1").checked){
+//            var value = document.querySelector("#filter1").value
+//            filterProductCollection(productName,value);
+//        }
+//    }
+}
+
+//Function for filtering
+function filterProductCollection(cat,comp){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("wrapper").innerHTML="";
+     $.ajax({// calling the ajax object of jquery
+        type: "GET",// we are going to be getting info from this data source
+        url: "./Schema/productCollection.json",//the datasource
+        dataType: "json",
+        success: function(data){
+            for(d of data){
+                if(d.category==cat && d.company==comp)
+                    {
+                        $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
+            <div class=" text-center thumbnail">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt="" onclick="loadProduct(${d.id})"></a>
+                    <div class="caption">
+                        <h3>${d.name}</h3>
+                        <p>Price: ${d.price}</p>
+                        <button class="btn btn-info btn-lg cartbtn" onClick="addProduct(${d.id})"><span class="glyphicon glyphicon-shopping-cart" ></span> Add To Cart</button>
+                        <button class="btn glyphicon glyphicon-heart wishlistbtn" onClick="addProductWishlist(${d.id})"></button>
+                    </div>
+            </div>
+        </div> `);
+            }
+        }
+    }, // what happens when it is successful at loading the JSON
+    error: function(e){
+        alert(e);
+      }
+    });
+
 }
 
 //Function for open sideNavbar
