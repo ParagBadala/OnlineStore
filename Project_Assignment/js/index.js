@@ -1,5 +1,6 @@
 var productCart=[];
 var productWishlist=[];
+var checkbox_value=[];
 var company= new Set();
 /*Sticky Navbar*/
 $(document).ready(function() {
@@ -112,10 +113,43 @@ function addProductWishlist(prodId){
         url: "./Schema/productCollection.json",//the datasource
         dataType: "json",
         success: function(data){
+            var obj = {};
             for(d of data){
                 if(d.id==prodId)
                     {
+                        obj=d;
                         productWishlist.push(d);
+                        alert("Product Added To Wishlist :-)")
+                        console.log(productWishlist);
+                        break;
+                    }
+                }
+
+//    if(!productWishlist.indexOf(obj)){
+//        productWishlist.push(obj);
+//    }
+//    else{
+//        alert("Already In wishlist");
+//    }
+    }, // what happens when it is successful at loading the XML
+    error: function(e){
+        alert(e);
+    }
+    });
+}
+
+//Function removing product from cart
+function removeProductWishlist(prodId){
+        $.ajax({// calling the ajax object of jquery
+        type: "GET",// we are going to be getting info from this data source
+        url: "./Schema/productCollection.json",//the datasource
+        dataType: "json",
+        success: function(data){
+            for(d in productWishlist){
+                if(productWishlist[d].id==prodId)
+                    {
+                        productWishlist.splice(d,1);
+                        wishlistPage();
                         console.log(productWishlist);
                         break;
                     }
@@ -176,6 +210,7 @@ function openProduct(evt, productName) {
         url: "./Schema/productCollection.json",//the datasource
         dataType: "json",
         success: function(data){
+            company.clear();
             for(d of data){
                 if(d.category==productName)
                 {
@@ -185,7 +220,7 @@ function openProduct(evt, productName) {
             var count=1;
             for(d of company){
                 $("#mySidenav").append(`<div id="filter_check" class="checkbox filter_checkbox">
-                <label onclick="checkbox_click()"><input type="checkbox" id="filter${count}" value="">${d}</label>
+                <label><input type="checkbox" id="filter${count}" onclick="checkbox_click(this,'${productName}')" value="${d}">${d}</label>
                 </div>`)
                 count=count+1;
             }
@@ -200,27 +235,45 @@ function openProduct(evt, productName) {
 
 
 //Function for checkbox
-function checkbox_click(){
-    console.log(company.size);
-    var length = 0
-//    while(length!=company.size){
-//        if(document.querySelector("#filter1").checked){
-//            var value = document.querySelector("#filter1").value
-//            filterProductCollection(productName,value);
-//        }
-//    }
+function checkbox_click(control,productName){
+    var counter = 0;
+    var value = control.value;
+    if(control.checked){
+        checkbox_value.push(value);
+    }
+    else{
+        for(d in checkbox_value){
+            if(checkbox_value[d]==value){
+                checkbox_value.splice(d,1);
+            }
+        }
+    }
+    if(checkbox_value.length==0){
+         document.getElementById("Above_nav").innerHTML="";
+         document.getElementById("Main").innerHTML="";
+         readProductCollection(productName);
+    }
+    else{
+        for(var i=0;i<checkbox_value.length;i++){
+            var check_value = checkbox_value[i]
+            filterProductCollection(productName,check_value,i);
+        }
+    }
 }
 
 //Function for filtering
-function filterProductCollection(cat,comp){
-    document.getElementById("Above_nav").innerHTML="";
-    document.getElementById("wrapper").innerHTML="";
+function filterProductCollection(cat,comp,i){
+    if(i==0){
+     document.getElementById("Above_nav").innerHTML="";
+     document.getElementById("Main").innerHTML="";
+    }
      $.ajax({// calling the ajax object of jquery
         type: "GET",// we are going to be getting info from this data source
         url: "./Schema/productCollection.json",//the datasource
         dataType: "json",
         success: function(data){
             for(d of data){
+                console.log(cat,comp);
                 if(d.category==cat && d.company==comp)
                     {
                         $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
@@ -405,7 +458,7 @@ function cartPage(){
                     <h1>Cart is Empty</h1>
                     <a href="#" class="btn btn-danger" onClick="home()"><span class="glyphicon glyphicon-home" ></span> Back To Home</a>
                      </div>
-                </div>`)
+                </div>`);
         }
     else{
         for(d of productCart){
@@ -432,20 +485,31 @@ function cartPage(){
 function wishlistPage(){
     document.getElementById("Above_nav").innerHTML="";
     document.getElementById("Main").innerHTML="";
-    for(d of productWishlist){
-        $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
-        <div class=" text-center thumbnail">
-            <a href="#" class="d-block mb-4 h-100">
-            <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
-            <div class="caption">
+    jumbotron();
+    if(productWishlist.length==0){
+            $("#Main").append(`<div class="jumbotron">
+                <div class="container text-center">
+                    <h1>Wishlist is Empty</h1>
+                    <a href="#" class="btn btn-danger" onClick="home()"><span class="glyphicon glyphicon-home" ></span> Back To Home</a>
+                     </div>
+                </div>`);
+    }
+    else{
+        for(d of productWishlist){
+            $("#Main").append(`<div class="col-lg-3 col-md-4 col-xs-6">
+            <div class=" text-center thumbnail">
+                <a href="#" class="d-block mb-4 h-100">
+                <img class="img-fluid img-thumbnail" src="./images/${d.category}/${d.image}" alt=""></a>
                 <div class="caption">
-                    <h3>${d.name}</h3>
-                    <p>Price: ${d.price}</p>
-                    <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductCart(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
-                    </div>
+                    <div class="caption">
+                        <h3>${d.name}</h3>
+                        <p>Price: ${d.price}</p>
+                        <a href="#" class="btn btn-danger btn-lg cartbtn" onClick="removeProductWishlist(${d.id})"><span class="glyphicon glyphicon-trash" ></span> Remove</a>
+                        </div>
+                </div>
             </div>
-        </div>
-    </div> `);
+        </div> `);
+        }
     }
 }
 
@@ -535,6 +599,6 @@ function addCategory(){
             <div class="panel-footer">Authorized Person </div>
         </div>
     </div>
-    `)
+    `);
   }
 }
