@@ -263,5 +263,85 @@
         "processor": "Snapdragaon 675",
         "price": 50000,
         "description": ""
+    },
+    {
+        "id": 23,
+        "name": "Fastrack NG3124",
+        "category": "Watches",
+        "maincategory": "Watches",
+        "company": "Fastrack",
+        "image": "watch1.jpg",
+        "price": 1500,
+        "description": "Bare Basic Watch - For Men"
+    },
+    {
+        "id": 24,
+        "name": "Fossil Explorist",
+        "category": "Watches",
+        "maincategory": "Watches",
+        "company": "Fossil",
+        "image": "watch2.jpg",
+        "price": 15999,
+        "description": "Smart Watch - For Men"
+    },
+    {
+        "id": 25,
+        "name": "Apple Watch",
+        "category": "Watches",
+        "maincategory": "Watches",
+        "company": "Apple",
+        "image": "watch3.jpg",
+        "price": 32000,
+        "description": "Smart Watch - For Men"
+    },
+    {
+        "id": 26,
+        "name": "Sumsung Gear S3",
+        "category": "Watches",
+        "maincategory": "Watches",
+        "company": "Sumsung",
+        "image": "watch4.jpg",
+        "price": 28000,
+        "description": "Smart Watch - For Men"
+    },
+    {
+        "id": 27,
+        "name": "Vintage Coat",
+        "category": "Clothing",
+        "maincategory": "Clothing",
+        "company": "Zara",
+        "image": "cloth1.jpg",
+        "price": 3300,
+        "description": "Vinatge Coat  - For Men"
+    },
+    {
+        "id": 28,
+        "name": "Jacket",
+        "category": "Clothing",
+        "maincategory": "Clothing",
+        "company": "Mashu",
+        "image": "cloth2.jpg",
+        "price": 4500,
+        "description": "Mashu Red Jacket - For Men"
+    },
+    {
+        "id": 29,
+        "name": "JAG T-Shirt",
+        "category": "Clothing",
+        "maincategory": "Clothing",
+        "company": "Zara",
+        "image": "cloth3.jpg",
+        "price": 1200,
+        "description": "JAG T-Shirt - For Men"
+    },
+    {
+        "id": 30,
+        "name": "Zara Coat",
+        "category": "Clothing",
+        "maincategory": "Clothing",
+        "company": "Zara",
+        "image": "cloth4.jpg",
+        "price": 5500,
+        "description": "Zara Leather Coat - For Men"
     }
 ]

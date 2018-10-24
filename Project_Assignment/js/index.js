@@ -28,7 +28,6 @@ function addProduct(prodId){
         url: "./Schema/productCollection.json",//the datasource
         dataType: "json",
         success: function(data){
-            var obj = {};
             for(d of data){
                 if(d.id==prodId)
                     {
@@ -64,18 +63,17 @@ function loadProduct(id){
         dataType: "json",
         success: function(data){
             for(d of data){
-                console.log(d);
                 if(d.id==id){
                     $("#Main").append(`<div class="card">
-                  <img src="./images/${d.category}/${d.image}" alt=""           style="width:100%">
-                 <h1>${d.name}</h1>
+                  <img src="./images/${d.category}/${d.image}" alt="" style="width:100%">
+                 <h2>${d.name}</h2>
                  <p class="title">${d.description}</p>
                  <p>Price:${d.price}</p>
-                 <p><button class="btn btn-info cart_btn">Add To Cart</button></p>
+                 <button class="btn btn-info cart_btn" onclick="addProduct(${d.id})">Add To Cart</button>
                  </div>`);
         }
     }
-}, // what happens when it is successful at loading the XML
+}, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
       }
@@ -99,7 +97,7 @@ function removeProductCart(prodId){
                         break;
                     }
                 }
-    }, // what happens when it is successful at loading the XML
+    }, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
     }
@@ -131,7 +129,7 @@ function addProductWishlist(prodId){
 //    else{
 //        alert("Already In wishlist");
 //    }
-    }, // what happens when it is successful at loading the XML
+    }, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
     }
@@ -154,7 +152,7 @@ function removeProductWishlist(prodId){
                         break;
                     }
                 }
-    }, // what happens when it is successful at loading the XML
+    }, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
     }
@@ -226,7 +224,7 @@ function openProduct(evt, productName) {
             }
             readProductCollection(productName);
 
-    }, // what happens when it is successful at loading the XML
+    }, // what happens when it is successful at loading the JSON
     error: function(e){
         alert(e);
       }
