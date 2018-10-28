@@ -580,14 +580,30 @@ function addCategory(){
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
-                    <li><a data-toggle="tab" href="#add">Add</a></li>
-                    <li><a data-toggle="tab" href="#delete">Delete</a></li>
+                    <li onclick="panel_read()"><a data-toggle="tab" href="#read">Read</a></li>
+                    <li onclick="panel_add()"><a data-toggle="tab" href="#add">Add</a></li>
+                    <li onclick="panel_delete()"><a data-toggle="tab" href="#delete">Delete</a></li>
                 </ul>
             </div>
             <div class="panel-body">
-              <div class="tab-content">
-                <div id="add" class="tab-pane fade in active">
-                  <h3>Add</h3>
+              <div id="content" class="tab-content">
+                <div id="read" class="tab-pane fade in active">
+                    <h3>Read</h3>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="show_category" onclick="checkRadio(this)" >Show Category</label>
+                    </div>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="show_product" onclick="checkRadio(this)">Show Product</label>
+                    </div>
+                </div>
+                <div id="add" class="tab-pane fade">
+                    <h3>Add</h3>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="add_category" onclick="checkRadio(this)" >Add Category</label>
+                    </div>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="add_product" onclick="checkRadio(this)">Add Product</label>
+                    </div>
                 </div>
                 <div id="delete" class="tab-pane fade">
                   <h3>DELETE</h3>
@@ -599,4 +615,138 @@ function addCategory(){
     </div>
     `);
   }
+}
+
+//Function Render the json file
+function panel_read(){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("content").innerHTML="";
+    $("#content").append(`<div id="read" class="tab-pane fade in active">
+                    <h3>Read</h3>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="show_category" onclick="checkRadio(this)" >Show Category</label>
+                    </div>
+                    <div class="radio-inline">
+                        <label><input type="radio" name="optradio" value="show_product" onclick="checkRadio(this)">Show Product</label>
+                    </div>
+                </div>`);
+}
+
+//Function to Render Panel's add page
+function panel_add(){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("content").innerHTML="";
+        $("#content").append(` <div id="add" class="tab-pane fade in active">
+            <h3>Add</h3>
+            <div class="radio-inline">
+                <label><input type="radio" name="optradio" value="add_category" onclick="checkRadio(this)" >Add Category</label>
+            </div>
+            <div class="radio-inline">
+                <label><input type="radio" name="optradio" value="add_product" onclick="checkRadio(this)">Add Product</label>
+            </div>
+        </div>`);
+}
+
+//Function rendering Panel's delete page
+function panel_delete(){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("content").innerHTML="";
+    $("#content").append(` <div id="add" class="tab-pane fade in active">
+        <h3>Delete</h3>
+        <div class="radio-inline">
+            <label><input type="radio" name="optradio" value="delete_category" onclick="checkRadio(this)" >Delete Category</label>
+        </div>
+        <div class="radio-inline">
+            <label><input type="radio" name="optradio" value="delete_product" onclick="checkRadio(this)">Delete Product</label>
+        </div>
+    </div>`);
+
+}
+
+//Function checking which radio button is selected
+function checkRadio(control){
+    document.getElementById("Above_nav").innerHTML="";
+    document.getElementById("content").innerHTML="";
+    var radiobutton_value= control.value;
+    if(radiobutton_value == "add_category"){
+        $("#content").append(` <form action="" method="post">
+                        <div class="form-group">
+                          <label for="mCategory">Main Category:</label>
+                          <input type="Text" class="form-control" id="mCategory" placeholder="Enter Main Category" name="mCat">
+                        </div>
+                        <div class="form-group">
+                          <label for="subCategory">Sub Category:</label>
+                          <input type="Text" class="form-control" id="subCategory" placeholder="Enter Main Category" name="mCat">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                      </form>`);
+    }
+    else if(radiobutton_value == "add_product"){
+        $("#content").append(` <form action="http://127.0.0.1:8080/add" method="post">
+                        <div class="form-group">
+                            <label for="id">Product ID:</label>
+                            <input type="number" class="form-control" id="id" placeholder="Enter Product ID" name="id">
+                        </div>
+                        <div class="form-group">
+                          <label for="maincategory">Main Category:</label>
+                          <input type="Text" class="form-control" id="maincategory" placeholder="Enter Main Category" name="maincategory">
+                        </div>
+                        <div class="form-group">
+                          <label for="category">Sub Category:</label>
+                          <input type="Text" class="form-control" id="category" placeholder="Enter Sub Category" name="category">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Product Company:</label>
+                            <input type="Text" class="form-control" id="company" placeholder="Enter Product Company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">Product Price:</label>
+                            <input type="number" class="form-control" id="price" placeholder="Enter Product Price" name="price">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>`);
+    }
+    else if(radiobutton_value == "show_category"){
+            $("#content").append(`<h2>Pending....!!</h2>`);
+            }
+    else if(radiobutton_value == "show_product"){
+        $.ajax({// calling the ajax object of jquery
+            type: "GET",// we are going to be getting info from this data source
+            url: "./Schema/productCollection.json",//the datasource
+            dataType: "json",
+            success: function(data){
+                $("#content").append(`<div style="text-align:center">
+                  <h1>Welcome to Product Page</h1>
+                  <h1>ProductList</h1>
+                  <br/>
+                    <table class="table table-striped">
+                      <thead class="thead-light">
+                        <tr>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Description</th>
+                          <th>Price</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody id="display_container">
+
+                      </tbody>
+                    </table>
+                  </div>`);
+                for(d of data){
+                    $("#display_container").append(`<tr>
+                    <td>${d.id}</td>
+                    <td>${d.name}</td>
+                    <td>${d.description}</td>
+                    <td>${d.price}</td>
+                    <td> <span style="display: inline;"><button type="button" class="btn btn-info">Edit</button> <button type="button" class="btn btn-danger">Delete</button></span></td>
+                </tr>`);
+            }
+        }, // what happens when it is successful at loading the JSON
+        error: function(e){
+            alert(e);
+          }
+        });
+    }
 }
