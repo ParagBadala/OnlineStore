@@ -22,8 +22,40 @@ exp.post('/add',function(req,res){
     console.log(Obj);
     appendData.push(Obj);
     console.log(appendData);
-    //res.send(appendData);
-    fs.writeFileSync('Project_Assignment/Schema/productCollection.json',JSON.stringify(appendData));
+    res.send("Product Added");
+    //fs.writeFileSync('Project_Assignment/Schema/productCollection.json',JSON.stringify(appendData));
     });
+
+exp.route(_url2).post((req,res)=>{
+    console.log("Update Url invoked")
+    console.log(req.body);
+   // res.writeHead(200, {'Content-Type': 'text/json'});
+    for(var prod  of data) {
+        if(prod.id==req.body.id){
+            console.log("inside if");
+            prod.id = req.body.id;
+            prod.category = req.body.category;
+            prod.maincategory = req.body.maincategory;
+            prod.company = req.body.company;
+            prod.price = req.body.price;
+        }
+        //fs.writeFileSync('Project_Assignment/Schema/productCollection.json',JSON.stringify(data));
+    }
+    res.send(data);
+});
+
+exp.get('/delete/:id',function(req,res){
+    console.log("Delete Url invoked");
+    var prodData = data
+    for(var e in prodData){
+        if(prodData[e].id==req.params.id){
+            prodData.splice(e,1);
+            console.log("Inside");
+        }
+           }
+    //fs.writeFileSync('Project_Assignment/Schema/productCollection.json',JSON.stringify(prodData));
+
+    res.send("Product Deleted");
+});
 
 exp.listen(8080,()=>console.log("Server Running on 127.0.0.1:8080/"));

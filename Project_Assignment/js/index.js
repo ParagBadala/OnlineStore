@@ -727,6 +727,7 @@ function checkRadio(control){
                           <th>Description</th>
                           <th>Price</th>
                           <th></th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody id="display_container">
@@ -740,7 +741,49 @@ function checkRadio(control){
                     <td>${d.name}</td>
                     <td>${d.description}</td>
                     <td>${d.price}</td>
-                    <td> <span style="display: inline;"><button type="button" class="btn btn-info">Edit</button> <button type="button" class="btn btn-danger">Delete</button></span></td>
+                    <td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit</button>
+                      <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                              <form action="http://127.0.0.1:8080/edit" method="post">
+                        <div class="form-group">
+                            <label for="id">Product ID:</label>
+                            <input type="number" class="form-control" id="id" placeholder="Enter Product ID" name="id" value="${d.id}">
+                        </div>
+                        <div class="form-group">
+                          <label for="maincategory">Main Category:</label>
+                          <input type="Text" class="form-control" id="maincategory" placeholder="Enter Main Category" name="maincategory" value="${d.maincategory}">
+                        </div>
+                        <div class="form-group">
+                          <label for="category">Sub Category:</label>
+                          <input type="Text" class="form-control" id="category" placeholder="Enter Sub Category" name="category" value="${d.category}">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Product Company:</label>
+                            <input type="Text" class="form-control" id="company" placeholder="Enter Product Company" name="company" value="${d.company}">
+                        </div>
+                        <div class="form-group">
+                            <label for="id">Product Price:</label>
+                            <input type="number" class="form-control" id="price" placeholder="Enter Product Price" name="price" value="${d.price}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </td>
+                    <td><form action="http://127.0.0.1:8080/delete/${d.id}" method="get"><button type="submit" class="btn btn-danger">Delete</button></span></form></td>
                 </tr>`);
             }
         }, // what happens when it is successful at loading the JSON
